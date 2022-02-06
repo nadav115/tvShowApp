@@ -8,13 +8,13 @@
 
 
     <EditText
-        android:id="@+id/username_input"
+        android:id="@+id/email_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="400dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Username"
+        android:hint="Email"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -26,11 +26,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="-50dp"
         android:ems="10"
-        android:text="Password"
+        android:hint="Password"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="@+id/username_input"
-        app:layout_constraintEnd_toEndOf="@+id/username_input"
-        app:layout_constraintStart_toStartOf="@+id/username_input" />
+        app:layout_constraintBottom_toBottomOf="@+id/email_input"
+        app:layout_constraintEnd_toEndOf="@+id/email_input"
+        app:layout_constraintStart_toStartOf="@+id/email_input" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/login_btn"
