@@ -4,7 +4,6 @@ public class tvShow {
     private String title;
     private String releaseDate;
     private String genre;
-    private String length;
     private int seasons;
     private int episodes;
 
@@ -30,14 +29,6 @@ public class tvShow {
 
     public void setGenre(String genre) {
         this.genre = genre;
-    }
-
-    public String getLength() {
-        return length;
-    }
-
-    public void setLength(String length) {
-        this.length = length;
     }
 
     public int getSeasons() {

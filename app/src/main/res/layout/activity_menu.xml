@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -11,10 +12,87 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_weight="10">
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </ScrollView>
+
+
+
+<!--        <ScrollView-->
+<!--            android:id="@+id/sv_fragment"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fillViewport="true">-->
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView8"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="hi im good here"-->
+<!--                    android:textSize="60sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView9"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="hi im good here"-->
+<!--                    android:textSize="60sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="@+id/textView8"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/textView8"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/textView8" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView10"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="hi im good here"-->
+<!--                    android:textSize="60sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="@+id/textView9"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/textView9"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/textView9" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView11"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="hi im good here"-->
+<!--                    android:textSize="60sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="@+id/textView10"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/textView10"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/textView10" />-->
+<!--                <TextView-->
+<!--                    android:id="@+id/textView12"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="hi im good here"-->
+<!--                    android:textSize="60sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="@+id/textView11"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/textView11"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/textView11" />-->
+<!--                <TextView-->
+<!--                    android:id="@+id/textView13"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="hi im good here"-->
+<!--                    android:textSize="60sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="@+id/textView12"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/textView12"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/textView12" />-->
+
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--        </ScrollView>-->
+
+
+        <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/listview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,9 +109,8 @@
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
-                app:srcCompat="@drawable/img_fav_logo"
                 android:scaleType="fitCenter"
-                />
+                app:srcCompat="@drawable/img_fav_logo" />
             <ImageButton
                 android:id="@+id/search_btn"
                 android:layout_width="80dp"

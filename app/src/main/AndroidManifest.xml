@@ -11,12 +11,29 @@
         android:theme="@style/Theme.TvShowApp">
         <activity
             android:name=".Activity_Login"
+            android:exported="false">
+
+        </activity>
+        <activity
+            android:name=".Activity_SignUp"
+            android:exported="false">
+
+        </activity>
+        <activity
+            android:name=".Activity_Menu"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".Activity_Favorites"
+            android:exported="false">
+
         </activity>
     </application>
 

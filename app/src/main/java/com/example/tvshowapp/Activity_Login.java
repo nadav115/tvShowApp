@@ -60,7 +60,7 @@ public class Activity_Login extends AppCompatActivity {
                     Toast.makeText(Activity_Login.this,
                             "Connected!",
                             Toast.LENGTH_SHORT).show();
-                    //startActivity(new Intent(Activity_Login.this, Activity_SignUp.class));
+                    startActivity(new Intent(Activity_Login.this, Activity_Menu.class));
                     // activity check
                 }
                 else
