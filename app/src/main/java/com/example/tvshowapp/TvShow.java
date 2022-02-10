@@ -57,13 +57,6 @@ public class TvShow {
         this.episodes = episodes;
     }
 
-    public int getRating() {
-        return rating;
-    }
 
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
 
-    private int rating;
 }

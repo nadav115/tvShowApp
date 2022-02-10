@@ -44,8 +44,7 @@
                 android:text="Tv Show name"
                 android:textColor="@color/black"
                 android:textSize="26sp"
-                android:textStyle="bold"/>
-
+                android:textStyle="bold" />
 
 
         </LinearLayout>
@@ -63,7 +62,7 @@
                 android:text="Genre:"
                 android:textColor="@color/black"
                 android:textSize="26sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_genre_name"
@@ -76,7 +75,12 @@
 
         </LinearLayout>
 
-
+        <ImageButton
+            android:id="@+id/btn_fav"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/img_fav_logo" />
 
 
     </LinearLayout>

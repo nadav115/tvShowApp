@@ -52,7 +52,7 @@ public class Activity_Menu extends AppCompatActivity {
 
         rv = findViewById(R.id.rv_tvShows);
         rv.setHasFixedSize(true);
-        //rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         //db = FirebaseFirestore.getInstance();
 
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
@@ -63,9 +63,9 @@ public class Activity_Menu extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     for (DocumentSnapshot document : task.getResult()) {
                         TvShow qst = document.toObject(TvShow.class);
-                        Log.d("Tv Show title:", qst.getTitle());
-                        Log.d("Tv Show title:", qst.getEpisodes());
-                        Log.d("Tv Show title:", qst.getSeasons());
+//                        Log.d("Tv Show title:", qst.getTitle());
+//                        Log.d("Tv Show title:", qst.getEpisodes());
+//                        Log.d("Tv Show title:", qst.getSeasons());
 
 
 
@@ -76,10 +76,27 @@ public class Activity_Menu extends AppCompatActivity {
                     }
                     tvShowAdapter = new TvShowAdapter(Activity_Menu.this,tvShowsList);
                     rv.setAdapter(tvShowAdapter);
+
+                    tvShowAdapter.setTvShowItemClickListener(new TvShowAdapter.TvShowItemClickListener() {
+                        @Override
+                        public void TvShowItemClicked(TvShow tvShow, int position) {
+                            Toast.makeText(Activity_Menu.this, tvShow.getTitle(), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        @Override
+                        public void favoriteClicked(TvShow tvShow, int position) {
+                            //tvShow.setFavorite(!tvShow.isFavorite());
+                            Toast.makeText(Activity_Menu.this, tvShow.getTitle() + "\n" + tvShow.getTitle(), Toast.LENGTH_SHORT).show();
+                            //rv.getAdapter().notifyItemChanged(position);
+                        }
+                    });
                 }
 
             }
         });
+
+
 
 
 

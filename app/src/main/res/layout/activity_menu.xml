@@ -35,13 +35,14 @@
                 android:layout_alignParentRight="true"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/img_fav_logo" />
+
             <ImageButton
                 android:id="@+id/search_btn"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
-                app:srcCompat="@drawable/img_search_logo"
                 android:scaleType="fitCenter"
+                app:srcCompat="@drawable/img_search_logo"
 
                 />
 

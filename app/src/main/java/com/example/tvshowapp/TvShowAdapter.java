@@ -1,38 +1,33 @@
 package com.example.tvshowapp;
 
 import android.app.Activity;
-import android.content.ClipData;
 import android.graphics.Movie;
-import android.location.GnssAntennaInfo;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatRatingBar;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.google.android.material.textview.MaterialTextView;
 
 import java.util.ArrayList;
 
-
-public class TvShowAdapater extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
+public class TvShowAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Activity activity;
     private ArrayList<TvShow> tvShows = new ArrayList<>();
-    // private TvShow TvShowItemClickListener;
+    private TvShowItemClickListener tvShowItemClickListener;
 
-    public TvShowAdapater(Activity activity, ArrayList<TvShow> tvShows) {
+
+    public TvShowAdapter(Activity activity, ArrayList<TvShow> tvShows) {
         this.activity = activity;
         this.tvShows = tvShows;
     }
 
-    public TvShowAdapater setTvShowItemClickListener(TvShowItemClickListener TvShowItemClickListener) {
-        this.TvShowItemClickListener = TvShowItemClickListener;
+
+    public TvShowAdapter setTvShowItemClickListener(TvShowItemClickListener tvShowItemClickListener) {
+        this.tvShowItemClickListener = tvShowItemClickListener;
         return this;
     }
 
@@ -46,7 +41,7 @@ public class TvShowAdapater extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        TvShowViewHolder tvShowViewHolder = (TvShowViewHolder) holder;
+        TvShowAdapter.TvShowViewHolder tvShowViewHolder = (TvShowAdapter.TvShowViewHolder) holder;
         TvShow tvShow = getItem(position);
         Log.d("pttt", "position= " + position);
 
@@ -80,9 +75,9 @@ public class TvShowAdapater extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return tvShows.get(position);
     }
 
-    public interface MovieItemClickListener {
-        void movieItemClicked(Movie movie, int position);
-        void favoriteClicked(Movie movie, int position);
+    public interface TvShowItemClickListener {
+        void TvShowItemClicked(TvShow tvShow, int position);
+        void favoriteClicked(TvShow tvShow, int position);
     }
 
     public class TvShowViewHolder extends RecyclerView.ViewHolder {
@@ -91,6 +86,7 @@ public class TvShowAdapater extends RecyclerView.Adapter<RecyclerView.ViewHolder
         //public AppCompatImageView movie_IMG_favorite;
         public TextView title;
         public TextView genre;
+        public ImageButton tvShowFav;
 //        public MaterialTextView movie_LBL_actors;
 //        public MaterialTextView movie_LBL_duration;
 //        public AppCompatRatingBar movie_RTNG_stars;
@@ -99,6 +95,7 @@ public class TvShowAdapater extends RecyclerView.Adapter<RecyclerView.ViewHolder
             super(itemView);
             this.title= itemView.findViewById(R.id.tv_show_title);
             this.genre= itemView.findViewById(R.id.tv_genre_name);
+            this.tvShowFav = itemView.findViewById(R.id.btn_fav);
 //            this.movie_IMG_image = itemView.findViewById(R.id.movie_IMG_image);
 //            this.movie_IMG_favorite = itemView.findViewById(R.id.movie_IMG_favorite);
 //            this.movie_LBL_title = itemView.findViewById(R.id.movie_LBL_title);
@@ -106,19 +103,19 @@ public class TvShowAdapater extends RecyclerView.Adapter<RecyclerView.ViewHolder
 //            this.movie_LBL_duration = itemView.findViewById(R.id.movie_LBL_duration);
 //            this.movie_RTNG_stars = itemView.findViewById(R.id.movie_RTNG_stars);
 
-//            itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    movieItemClickListener.movieItemClicked(getItem(getAdapterPosition()), getAdapterPosition());
-//                }
-//            });
-//
-//            movie_IMG_favorite.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    movieItemClickListener.favoriteClicked(getItem(getAdapterPosition()), getAdapterPosition());
-//                }
-//            });
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tvShowItemClickListener.TvShowItemClicked(getItem(getAdapterPosition()), getAdapterPosition());
+                }
+            });
+
+            tvShowFav.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tvShowItemClickListener.favoriteClicked(getItem(getAdapterPosition()), getAdapterPosition());
+                }
+            });
         }
     }
 }
