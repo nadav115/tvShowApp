@@ -1,11 +1,21 @@
 package com.example.tvshowapp;
 
-public class tvShow {
+public class TvShow {
     private String title;
     private String releaseDate;
     private String genre;
-    private int seasons;
-    private int episodes;
+    private String url;
+    private String seasons;
+    private String episodes;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
 
     public String getTitle() {
         return title;
@@ -31,19 +41,19 @@ public class tvShow {
         this.genre = genre;
     }
 
-    public int getSeasons() {
+    public String getSeasons() {
         return seasons;
     }
 
-    public void setSeasons(int seasons) {
+    public void setSeasons(String seasons) {
         this.seasons = seasons;
     }
 
-    public int getEpisodes() {
+    public String getEpisodes() {
         return episodes;
     }
 
-    public void setEpisodes(int episodes) {
+    public void setEpisodes(String episodes) {
         this.episodes = episodes;
     }
 
