@@ -32,7 +32,7 @@ public class Activity_Menu extends AppCompatActivity {
     private ImageButton favorites , search;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private ArrayList<TvShow> tvShowsList;
-    ImageView imgv;
+
     TvShowAdapter tvShowAdapter;
 
     @Override
@@ -41,19 +41,14 @@ public class Activity_Menu extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         favorites = findViewById(R.id.favorite_btn);
         search = findViewById(R.id.search_btn);
-        //sv = findViewById(R.id.sv_fragment);
-        //imgv = findViewById(R.id.imgv);
-        //Glide.with(this).load("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/screen-shot-2019-12-16-at-10-16-52-am-1576509427.png").into(imgv);
+
         tvShowsList = new ArrayList<>();
         RecyclerView rv;
-
-        DatabaseReference databaseReference;
-        ArrayList<TvShow> list = new ArrayList<>();
 
         rv = findViewById(R.id.rv_tvShows);
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        //db = FirebaseFirestore.getInstance();
+
 
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
         CollectionReference questionsRef = rootRef.collection("tv_shows");
@@ -63,11 +58,6 @@ public class Activity_Menu extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     for (DocumentSnapshot document : task.getResult()) {
                         TvShow qst = document.toObject(TvShow.class);
-//                        Log.d("Tv Show title:", qst.getTitle());
-//                        Log.d("Tv Show title:", qst.getEpisodes());
-//                        Log.d("Tv Show title:", qst.getSeasons());
-
-
 
                         // Add all to your list
                         tvShowsList.add(qst);
@@ -78,36 +68,28 @@ public class Activity_Menu extends AppCompatActivity {
                     rv.setAdapter(tvShowAdapter);
 
                     tvShowAdapter.setTvShowItemClickListener(new TvShowAdapter.TvShowItemClickListener() {
-                        @Override
-                        public void TvShowItemClicked(TvShow tvShow, int position) {
-                            Toast.makeText(Activity_Menu.this, tvShow.getTitle(), Toast.LENGTH_SHORT).show();
+                            @Override
+                            public void TvShowItemClicked(TvShow tvShow, int position) {
+                                //Toast.makeText(Activity_Menu.this, tvShow.getTitle(), Toast.LENGTH_SHORT).show();
 
-                        }
+                                Intent intent = new Intent(Activity_Menu.this, Activity_Item_Page.class);
+                                intent.putExtra("tvShow_title", tvShow.getTitle());
+                                startActivity(intent);
+                            }
 
-                        @Override
-                        public void favoriteClicked(TvShow tvShow, int position) {
-                            //tvShow.setFavorite(!tvShow.isFavorite());
-                            Toast.makeText(Activity_Menu.this, tvShow.getTitle() + "\n" + tvShow.getTitle(), Toast.LENGTH_SHORT).show();
-                            //rv.getAdapter().notifyItemChanged(position);
-                        }
+                            @Override
+                            public void favoriteClicked(TvShow tvShow, int position) {
+                                tvShow.setFavorite(!tvShow.isFavorite());
+                                DocumentReference favChange = db.collection("tv_shows").document(tvShow.getTitle());
+
+                                favChange.update("favorite", tvShow.isFavorite());
+                                //Toast.makeText(Activity_Menu.this, tvShow.getTitle() + "\n" + tvShow.getTitle(), Toast.LENGTH_SHORT).show();
+                                rv.getAdapter().notifyItemChanged(position);
+                            }
                     });
                 }
-
             }
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         favorites.setOnClickListener(v -> {

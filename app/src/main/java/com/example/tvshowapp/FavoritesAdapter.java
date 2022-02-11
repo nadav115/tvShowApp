@@ -19,19 +19,19 @@ import com.google.android.material.textview.MaterialTextView;
 
 import java.util.ArrayList;
 
-public class TvShowAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class FavoritesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Activity activity;
     private ArrayList<TvShow> tvShows = new ArrayList<>();
     private TvShowItemClickListener tvShowItemClickListener;
 
 
-    public TvShowAdapter(Activity activity, ArrayList<TvShow> tvShows) {
+    public FavoritesAdapter(Activity activity, ArrayList<TvShow> tvShows) {
         this.activity = activity;
         this.tvShows = tvShows;
     }
 
 
-    public TvShowAdapter setTvShowItemClickListener(TvShowItemClickListener tvShowItemClickListener) {
+    public FavoritesAdapter setTvShowItemClickListener(TvShowItemClickListener tvShowItemClickListener) {
         this.tvShowItemClickListener = tvShowItemClickListener;
         return this;
     }
@@ -66,6 +66,8 @@ public class TvShowAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             } else {
                 tvShowViewHolder.tvShowFav.setImageResource(R.drawable.img_star_empty);
             }
+
+
 
 
 //        float rating = movie.getRating();

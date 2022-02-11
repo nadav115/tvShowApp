@@ -7,17 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="10">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_tvShows"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,27 +19,32 @@
             android:layout_height="match_parent">
 
             <ImageButton
-                android:id="@+id/favorite_btn"
+                android:id="@+id/btn_back"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:background="@color/white"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/img_fav_logo" />
+                app:srcCompat="@drawable/img_back_arrow" />
 
-            <ImageButton
-                android:id="@+id/search_btn"
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
-                android:background="@color/white"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/img_search_logo"
-
-                />
 
         </RelativeLayout>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="10">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_tvShows"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+
 
 </LinearLayout>

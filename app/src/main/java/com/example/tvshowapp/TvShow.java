@@ -4,9 +4,19 @@ public class TvShow {
     private String title;
     private String releaseDate;
     private String genre;
-    private String url;
+    private String url = "";
     private String seasons;
     private String episodes;
+    private boolean isFavorite = false;
+
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
 
     public String getUrl() {
         return url;

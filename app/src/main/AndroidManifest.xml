@@ -35,6 +35,11 @@
             android:exported="false">
 
         </activity>
+        <activity
+            android:name=".Activity_Item_Page"
+            android:exported="false">
+
+        </activity>
     </application>
 
 </manifest>

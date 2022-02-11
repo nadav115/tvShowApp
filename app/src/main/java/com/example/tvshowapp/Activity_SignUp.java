@@ -29,7 +29,7 @@ public class Activity_SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         user_name=findViewById(R.id.email_input);
         pass_word=findViewById(R.id.password_input);
-        btn_signup=findViewById(R.id.register_btn);
+        btn_signup=findViewById(R.id.signup_btn);
         mAuth=FirebaseAuth.getInstance();
 
         btn_signup.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +67,7 @@ public class Activity_SignUp extends AppCompatActivity {
                         if(task.isSuccessful())
                         {
                             Toast.makeText(Activity_SignUp.this,"You are successfully Registered", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(Activity_SignUp.this, Activity_Login.class));
                         }
                         else
                         {
