@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Activity_Menu">
 
 
     <EditText
@@ -38,6 +38,7 @@
         android:layout_marginBottom="100dp"
         android:text="Register"
         android:textSize="20dp"
+        app:cornerRadius="20dp"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,20 +64,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="tvShow"
-        android:textSize="30dp"
+        android:textSize="70dp"
+        android:fontFamily="cursive"
         tools:layout_editor_absoluteX="177dp"
         tools:layout_editor_absoluteY="218dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="490dp"/>
+        android:layout_marginBottom="440dp"/>
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="664dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.997"

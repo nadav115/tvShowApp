@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Activity_SignUp extends AppCompatActivity {
     MaterialButton btn_signup;
     EditText user_name, pass_word;
+    ImageButton back_btn;
     FirebaseAuth mAuth;
 
     @Override
@@ -30,6 +31,7 @@ public class Activity_SignUp extends AppCompatActivity {
         user_name=findViewById(R.id.email_input);
         pass_word=findViewById(R.id.password_input);
         btn_signup=findViewById(R.id.signup_btn);
+        back_btn = findViewById(R.id.btn_back);
         mAuth=FirebaseAuth.getInstance();
 
         btn_signup.setOnClickListener(new View.OnClickListener() {
@@ -76,8 +78,15 @@ public class Activity_SignUp extends AppCompatActivity {
                     }
                 });
 
+
             }
         });
-
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i  = new Intent(Activity_SignUp.this,Activity_Login.class);
+                startActivity(i);
+            }
+        });
     }
 }

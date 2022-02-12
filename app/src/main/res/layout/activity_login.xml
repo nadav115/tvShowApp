@@ -40,6 +40,7 @@
         android:text="Login"
         android:textSize="20dp"
         android:textAllCaps="false"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,6 +54,7 @@
         android:text="Register"
         android:textAllCaps="false"
         android:textSize="15dp"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/login_btn"
         app:layout_constraintEnd_toEndOf="@+id/login_btn"
         app:layout_constraintStart_toStartOf="@+id/login_btn" />
@@ -74,13 +76,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="tvShow"
-        android:textSize="30dp"
+        android:textSize="70dp"
         tools:layout_editor_absoluteX="177dp"
         tools:layout_editor_absoluteY="218dp"
+        android:textColor="@color/black"
+        android:fontFamily="cursive"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="490dp"/>
+        android:layout_marginBottom="440dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
