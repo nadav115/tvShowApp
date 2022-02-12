@@ -3,6 +3,7 @@ package com.example.tvshowapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -32,6 +33,7 @@ public class Activity_Item_Page extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private TvShow tvShow;
+    private ImageButton btn_back;
     private String selectedTvShow;
     ItemPageAdapter itemPageAdapter;
 
@@ -39,7 +41,7 @@ public class Activity_Item_Page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_page);
-
+        btn_back = findViewById(R.id.btn_back);
         String selectedTvShow = getIntent().getStringExtra("tvShow_title");
 
 
@@ -61,28 +63,31 @@ public class Activity_Item_Page extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     for (DocumentSnapshot document : task.getResult()) {
                         TvShow qst = document.toObject(TvShow.class);
-                        Log.d("dsd:"," BBBBBBBBBBBBB " + qst.getTitle());
                         // Add all to your list
 
                         if (selectedTvShow.compareTo(qst.getTitle()) == 0){
                             tvShow = qst;
-                            Log.d("dsd:"," aaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                         }
                     }
                     itemPageAdapter = new ItemPageAdapter(Activity_Item_Page.this,tvShow);
                     rv.setAdapter(itemPageAdapter);
-
-
                 }
             }
         });
 
-
-
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i ;
+                if(getIntent().getStringExtra("from").equals("menu")){
+                i = new Intent(Activity_Item_Page.this,Activity_Menu.class);
+                }else {
+                    i = new Intent(Activity_Item_Page.this,Activity_Favorites.class);
+                }
+                startActivity(i);
+            }
+        });
     }
-
-
-
 }
 
 

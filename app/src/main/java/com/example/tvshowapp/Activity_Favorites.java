@@ -1,7 +1,10 @@
 package com.example.tvshowapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -25,7 +28,7 @@ public class Activity_Favorites  extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private ArrayList<TvShow> tvShowsList;
     FavoritesAdapter favoritesAdapter;
-
+    private ImageButton btn_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,8 @@ public class Activity_Favorites  extends AppCompatActivity {
 
         tvShowsList = new ArrayList<>();
         RecyclerView rv;
+
+        btn_back = findViewById(R.id.btn_back);
 
         DatabaseReference databaseReference;
         ArrayList<TvShow> list = new ArrayList<>();
@@ -67,7 +72,10 @@ public class Activity_Favorites  extends AppCompatActivity {
                     favoritesAdapter.setTvShowItemClickListener(new FavoritesAdapter.TvShowItemClickListener() {
                         @Override
                         public void TvShowItemClicked(TvShow tvShow, int position) {
-                            //Toast.makeText(Activity_Menu.this, tvShow.getTitle(), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(Activity_Favorites.this, Activity_Item_Page.class);
+                            intent.putExtra("tvShow_title", tvShow.getTitle());
+                            intent.putExtra("from", "favorite");
+                            startActivity(intent);
                         }
 
                         @Override
@@ -83,7 +91,13 @@ public class Activity_Favorites  extends AppCompatActivity {
             }
         });
 
-
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i  = new Intent(Activity_Favorites.this,Activity_Menu.class);
+                startActivity(i);
+            }
+        });
 
     }
 }

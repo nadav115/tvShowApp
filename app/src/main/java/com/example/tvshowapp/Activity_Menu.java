@@ -1,8 +1,11 @@
 package com.example.tvshowapp;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -29,9 +32,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Activity_Menu extends AppCompatActivity {
-    private ImageButton favorites , search;
+    private ImageButton favorites , search , addPhoto;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private ArrayList<TvShow> tvShowsList;
+    private EditText tvShowInput;
+    private ArrayList<TvShow> tvShowsList , searchedTvShows;
 
     TvShowAdapter tvShowAdapter;
 
@@ -39,8 +43,12 @@ public class Activity_Menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+
         favorites = findViewById(R.id.favorite_btn);
         search = findViewById(R.id.search_btn);
+        tvShowInput = findViewById(R.id.search_input);
+        addPhoto = findViewById(R.id.addPhoto_btn);
 
         tvShowsList = new ArrayList<>();
         RecyclerView rv;
@@ -74,6 +82,7 @@ public class Activity_Menu extends AppCompatActivity {
 
                                 Intent intent = new Intent(Activity_Menu.this, Activity_Item_Page.class);
                                 intent.putExtra("tvShow_title", tvShow.getTitle());
+                                intent.putExtra("from", "menu");
                                 startActivity(intent);
                             }
 
@@ -91,6 +100,54 @@ public class Activity_Menu extends AppCompatActivity {
             }
         });
 
+        search.setOnClickListener(new View.OnClickListener() {
+                                      @Override
+                                      public void onClick(View view) {
+                                          String tvShow_title = tvShowInput.getText().toString().toLowerCase();
+                                          searchedTvShows = new ArrayList<TvShow>();
+                                          if (tvShow_title.equals("")) {
+                                              searchedTvShows = tvShowsList;
+                                          } else {
+                                              for (TvShow tvShow : tvShowsList) {
+                                                  if (tvShow.getTitle().toLowerCase().contains(tvShow_title)) {
+                                                      searchedTvShows.add(tvShow);
+                                                      Log.d("dsd:"," tvShow added :  " + tvShow.getTitle());
+                                                  }
+                                              }
+                                          }
+
+                                          tvShowAdapter = new TvShowAdapter(Activity_Menu.this,searchedTvShows);
+                                          rv.setAdapter(tvShowAdapter);
+
+                                         tvShowAdapter.setTvShowItemClickListener(new TvShowAdapter.TvShowItemClickListener() {
+                            @Override
+                            public void TvShowItemClicked(TvShow tvShow, int position) {
+                                //Toast.makeText(Activity_Menu.this, tvShow.getTitle(), Toast.LENGTH_SHORT).show();
+
+                                Intent intent = new Intent(Activity_Menu.this, Activity_Item_Page.class);
+                                intent.putExtra("tvShow_title", tvShow.getTitle());
+                                intent.putExtra("from", "menu");
+                                startActivity(intent);
+                            }
+
+                            @Override
+                            public void favoriteClicked(TvShow tvShow, int position) {
+                                tvShow.setFavorite(!tvShow.isFavorite());
+                                DocumentReference favChange = db.collection("tv_shows").document(tvShow.getTitle());
+
+                                favChange.update("favorite", tvShow.isFavorite());
+                                //Toast.makeText(Activity_Menu.this, tvShow.getTitle() + "\n" + tvShow.getTitle(), Toast.LENGTH_SHORT).show();
+                                rv.getAdapter().notifyItemChanged(position);
+                            }
+                    });
+
+                                      }
+                                  });
+
+        addPhoto.setOnClickListener(v -> {
+            startActivity(new Intent(this, Activity_Photo.class));
+        });
+
 
         favorites.setOnClickListener(v -> {
             startActivity(new Intent(this, Activity_Favorites.class));
@@ -102,5 +159,6 @@ public class Activity_Menu extends AppCompatActivity {
 
 
 }
+
 
 
