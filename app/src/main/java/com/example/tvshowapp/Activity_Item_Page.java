@@ -2,12 +2,8 @@ package com.example.tvshowapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ScrollView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,26 +11,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class Activity_Item_Page extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private TvShow tvShow;
     private ImageButton btn_back;
-    private String selectedTvShow;
     ItemPageAdapter itemPageAdapter;
 
     @Override
@@ -45,8 +33,6 @@ public class Activity_Item_Page extends AppCompatActivity {
         String selectedTvShow = getIntent().getStringExtra("tvShow_title");
 
 
-
-        Log.d("dsd:","tv show selected : " + selectedTvShow);
         tvShow = new TvShow();
         RecyclerView rv;
 
@@ -63,7 +49,7 @@ public class Activity_Item_Page extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     for (DocumentSnapshot document : task.getResult()) {
                         TvShow qst = document.toObject(TvShow.class);
-                        // Add all to your list
+                        // Add all to list
 
                         if (selectedTvShow.compareTo(qst.getTitle()) == 0){
                             tvShow = qst;

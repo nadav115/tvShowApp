@@ -2,7 +2,6 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="150dp"
@@ -22,7 +21,6 @@
             android:layout_height="280dp"
             android:layout_weight="40"
             android:layout_gravity="center"
-
             android:orientation="vertical"
             android:padding="8dp"
 
@@ -32,7 +30,6 @@
                 android:id="@+id/TvShow_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_launcher_background" />
 
@@ -107,7 +104,6 @@
                     android:gravity="bottom"
                     android:maxLines="2"
                     android:minLines="2"
-
                     android:text="date"
                     android:textSize="20sp" />
 
@@ -147,7 +143,6 @@
                     android:gravity="bottom"
                     android:maxLines="2"
                     android:minLines="2"
-
                     android:text="Genre"
                     android:textSize="20sp" />
 
@@ -214,7 +209,6 @@
                     android:gravity="top"
                     android:maxLines="2"
                     android:minLines="2"
-
                     android:text="Episodes"
                     android:textSize="20sp" />
 

@@ -1,15 +1,10 @@
 package com.example.tvshowapp;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ScrollView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,10 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -28,8 +20,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class Activity_Menu extends AppCompatActivity {
     private ImageButton favorites , search , addPhoto;
@@ -67,10 +57,8 @@ public class Activity_Menu extends AppCompatActivity {
                     for (DocumentSnapshot document : task.getResult()) {
                         TvShow qst = document.toObject(TvShow.class);
 
-                        // Add all to your list
+                        // Add all to list
                         tvShowsList.add(qst);
-                        Log.d("dsd:"," size is "+tvShowsList.size());
-
                     }
                     tvShowAdapter = new TvShowAdapter(Activity_Menu.this,tvShowsList);
                     rv.setAdapter(tvShowAdapter);
@@ -78,7 +66,6 @@ public class Activity_Menu extends AppCompatActivity {
                     tvShowAdapter.setTvShowItemClickListener(new TvShowAdapter.TvShowItemClickListener() {
                             @Override
                             public void TvShowItemClicked(TvShow tvShow, int position) {
-                                //Toast.makeText(Activity_Menu.this, tvShow.getTitle(), Toast.LENGTH_SHORT).show();
 
                                 Intent intent = new Intent(Activity_Menu.this, Activity_Item_Page.class);
                                 intent.putExtra("tvShow_title", tvShow.getTitle());
@@ -92,7 +79,6 @@ public class Activity_Menu extends AppCompatActivity {
                                 DocumentReference favChange = db.collection("tv_shows").document(tvShow.getTitle());
 
                                 favChange.update("favorite", tvShow.isFavorite());
-                                //Toast.makeText(Activity_Menu.this, tvShow.getTitle() + "\n" + tvShow.getTitle(), Toast.LENGTH_SHORT).show();
                                 rv.getAdapter().notifyItemChanged(position);
                             }
                     });
@@ -111,7 +97,6 @@ public class Activity_Menu extends AppCompatActivity {
                                               for (TvShow tvShow : tvShowsList) {
                                                   if (tvShow.getTitle().toLowerCase().contains(tvShow_title)) {
                                                       searchedTvShows.add(tvShow);
-                                                      Log.d("dsd:"," tvShow added :  " + tvShow.getTitle());
                                                   }
                                               }
                                           }
@@ -122,7 +107,6 @@ public class Activity_Menu extends AppCompatActivity {
                                          tvShowAdapter.setTvShowItemClickListener(new TvShowAdapter.TvShowItemClickListener() {
                             @Override
                             public void TvShowItemClicked(TvShow tvShow, int position) {
-                                //Toast.makeText(Activity_Menu.this, tvShow.getTitle(), Toast.LENGTH_SHORT).show();
 
                                 Intent intent = new Intent(Activity_Menu.this, Activity_Item_Page.class);
                                 intent.putExtra("tvShow_title", tvShow.getTitle());
@@ -134,9 +118,7 @@ public class Activity_Menu extends AppCompatActivity {
                             public void favoriteClicked(TvShow tvShow, int position) {
                                 tvShow.setFavorite(!tvShow.isFavorite());
                                 DocumentReference favChange = db.collection("tv_shows").document(tvShow.getTitle());
-
                                 favChange.update("favorite", tvShow.isFavorite());
-                                //Toast.makeText(Activity_Menu.this, tvShow.getTitle() + "\n" + tvShow.getTitle(), Toast.LENGTH_SHORT).show();
                                 rv.getAdapter().notifyItemChanged(position);
                             }
                     });

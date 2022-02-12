@@ -55,7 +55,6 @@ public class Activity_Photo extends AppCompatActivity {
     }
 
     public void uploadFirebase(View view) {
-        // Get the data from an ImageView as bytes
         StorageReference imageRef=storage.getReference().child("images").child(imageName);
 
         imageView.setDrawingCacheEnabled(true);
@@ -69,13 +68,10 @@ public class Activity_Photo extends AppCompatActivity {
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
-                // Handle unsuccessful uploads
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                // ...
             }
         });
     }
